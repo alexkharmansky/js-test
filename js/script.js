@@ -15,9 +15,12 @@ var array = [
 // "item" is the next array element
 var groupByNames = array.reduce((total, item) => {
 
-    // replacing other symbols after first space with empty string using regex
-    // and summing the values that have equal strings in "total"
-    total[item.name.replace(/ .*/, '')] = (total[item.name.replace(/ .*/, '')] || 0) + item.value;
+    // splitting names by space into array and then slicing them by first element
+    var splittedNames = item.name.split(" ");
+    var slicedNames = splittedNames.slice(0, 1);
+
+    // summing the values of the same strings
+    total[slicedNames] = (total[slicedNames] || 0) + item.value;
 
     // reducing an array to a single value "total"
     return total;
